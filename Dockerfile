@@ -7,7 +7,7 @@ RUN apk add --no-cache \
 
 COPY build.sh /build.sh
 
-ENV VERSION=v1.10-test
+ENV VERSION=master
 
 RUN /build.sh
 
