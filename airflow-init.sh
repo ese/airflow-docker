@@ -17,6 +17,8 @@
 #  specific language governing permissions and limitations      *
 #  under the License.
 
+
+cd /usr/local/lib/python3.6/site-packages/airflow/
 airflow initdb && \
 alembic upgrade heads && \
 (airflow create_user -u airflow -l airflow -f jon -e airflow@apache.org -r Admin -p airflow || true)
