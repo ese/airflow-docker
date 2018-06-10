@@ -39,6 +39,7 @@ RUN apk add --no-cache \
         pip install cryptography && \
         pip install --no-cache-dir Cython --install-option="--no-cython-compile" && \
         pip install psycopg2-binary==2.7.4 && \
+        pip install numpy==1.14.0 && \
         pip install --no-build-isolation /tmp/airflow.tar.gz && \
         apk del .build-dependencies
 
