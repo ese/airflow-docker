@@ -7,8 +7,6 @@ RUN apk add --no-cache \
 
 COPY build.sh /build.sh
 
-ENV VERSION=master
-
 RUN /build.sh
 
 FROM python:3.6-alpine3.7

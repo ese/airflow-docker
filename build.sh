@@ -2,7 +2,7 @@
 
 set -x
 
-VERSION=${VERSION:-master}
+VERSION=${VERSION:-v1-10-test}
 AIRFLOW_ROOT="/airflow"
 
 mkdir ${AIRFLOW_ROOT}
