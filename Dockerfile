@@ -5,6 +5,8 @@ RUN apk add --no-cache \
       bash \
       && pip install gitpython
 
+ENV SLUGIFY_USES_TEXT_UNIDECODE=yes
+
 COPY build.sh /build.sh
 
 RUN /build.sh
