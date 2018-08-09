@@ -15,6 +15,8 @@ FROM python:3.6-alpine3.7
 
 COPY  --from=get_code /airflow/dist/airflow.tar.gz /tmp/airflow.tar.gz
 
+ENV SLUGIFY_USES_TEXT_UNIDECODE=yes
+
 # install deps
 RUN apk add --no-cache \
         wget \
@@ -22,6 +24,7 @@ RUN apk add --no-cache \
         libxslt \
         libxml2 \
         musl \
+        openjdk8 \
         postgresql-libs && \
         apk add --no-cache --virtual=.build-dependencies \
         git \
@@ -42,7 +45,8 @@ RUN apk add --no-cache \
         pip install numpy==1.14.0 && \
         pip install --no-build-isolation /tmp/airflow.tar.gz && \
         wget -q --show-progress --progress=bar:force:noscroll https://github.com/apache-spark-on-k8s/spark/releases/download/v2.2.0-kubernetes-0.5.0/spark-2.2.0-k8s-0.5.0-bin-with-hadoop-2.7.3.tgz && \
-        tar xvfz spark-2.2.0-k8s-0.5.0-bin-with-hadoop-2.7.3.tgz && \
+        mkdir -p /opt && \
+        tar xfz spark-2.2.0-k8s-0.5.0-bin-with-hadoop-2.7.3.tgz -C /opt && \
         rm spark-2.2.0-k8s-0.5.0-bin-with-hadoop-2.7.3.tgz && \
         ln -s /opt/spark-2.2.0-k8s-0.5.0-bin-2.7.3 /opt/spark && \
         apk del .build-dependencies
