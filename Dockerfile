@@ -39,6 +39,10 @@ RUN apk add --no-cache \
         pip install psycopg2-binary==2.7.4 && \
         pip install numpy==1.14.0 && \
         pip install --no-build-isolation /tmp/airflow.tar.gz && \
+        wget -q --show-progress --progress=bar:force:noscroll https://github.com/apache-spark-on-k8s/spark/releases/download/v2.2.0-kubernetes-0.5.0/spark-2.2.0-k8s-0.5.0-bin-with-hadoop-2.7.3.tgz && \
+        tar xvfz spark-2.2.0-k8s-0.5.0-bin-with-hadoop-2.7.3.tgz && \
+        rm spark-2.2.0-k8s-0.5.0-bin-with-hadoop-2.7.3.tgz && \
+        ln -s /opt/spark-2.2.0-k8s-0.5.0-bin-2.7.3 /opt/spark && \
         apk del .build-dependencies
 
 COPY airflow-init.sh /tmp/airflow-init.sh
